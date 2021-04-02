@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block title %} Quote {% endblock %} {% block
+scripts %} {% include "search_script.html" %} {% endblock%} {% block main %}
+<h2 style="margin: 25px">Look up a stock quote</h2>
+<h5 style="margin: 15px">
+  Choose a
+  <a href="http://eoddata.com/symbols.aspx" target="”_blank”"
+    >New York Stock Exchange (NYSE) stock</a
+  >
+  to get a quote for
+  <br />
+  by typing the stock name or symbol into the field below and selecting it from
+  the dropdown menu.
+
+  <form autocomplete="off" action="/quote" method="post">
+    {% include "symbol_form_selector.html" %}
+    <button class="btn btn-primary" type="submit">Quote</button>
+  </form>
+  {% endblock %}
+</h5>

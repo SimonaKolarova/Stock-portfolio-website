@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock portfolio
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin: 25px">Transactions history<br></h2>
+    <table class= "table table-striped">
+        <thead>
+        <tr>
+            <th>Action</th>
+            <th>Stock name</th>
+            <th>Stock Symbol</th>
+            <th>Number of shares</th>
+            <th>Stock Price</th>
+            <th>Timestamp</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in transactions %}
+                <tr>
+                    <td>{{row["transaction_type"]}}</td>
+                    <td>{{row["stock_name"]}}</td>
+                    <td>{{row["stock_symbol"]}}</td>
+                    <td>{{row["shares"]}}</td>
+                    <td>${{row["stock_price"]}}</td>
+                    <td>{{row["timestamp"]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

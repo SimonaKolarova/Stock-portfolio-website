@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin: 40px"> A share of {{ name }} ({{ symbol }}) is currently priced at ${{ price }}.</h2>
+    <a href = "/quote" class="btn btn-secondary"style="margin: 5px">Back to quote</a>
+    <a href = "/buy" class="btn btn-secondary"style="margin: 5px">Buy</a>
+    <a href = "/sell" class="btn btn-secondary"style="margin: 5px">Sell</a>
+{% endblock %}

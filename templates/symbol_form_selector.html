@@ -1,0 +1,25 @@
+<div class="form-group">
+  <select
+    id="symbol"
+    name="symbol"
+    class="form-control select2"
+    style="width: 30%"
+    data-bind="options: availableSymbols,
+                     optionsText: 'name',
+                     optionsValue: 'symbol',
+                     value: selectedSymbol,
+                     optionsCaption: 'Stock Symbol'"
+    searchable="Search here.."
+  ></select>
+  <div data-bind="visible: selectedSymbol">
+    <!-- Appears when you select something -->
+    <br />
+    <b
+      >You have chosen
+      <span
+        data-bind="text: selectedSymbol() ? selectedSymbol() : 'unknown'"
+      ></span>
+      stocks.
+    </b>
+  </div>
+</div>

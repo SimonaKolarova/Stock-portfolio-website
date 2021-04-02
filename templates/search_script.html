@@ -1,0 +1,47 @@
+<script>
+  $(document).ready(function () {
+    $(".select2").select2({
+      width: "resolve",
+    });
+
+    var Symbol = function (name, symbol) {
+      this.name = name;
+      this.symbol = symbol;
+    };
+    var viewModel = {
+      availableSymbols: ko.observableArray([new Symbol("TESLA", "TSL")]),
+      selectedSymbol: ko.observable([new Symbol("TESLA", "TSL")]), // Nothing selected by default
+      fetchSymbols: function (text) {
+        $.getJSON("/symbols/" + text, function (json) {
+          console.log("Loaded data:", json);
+          viewModel.availableSymbols.removeAll();
+          //var data = JSON.parse(json);
+          //console.log("Loaded data:", data);
+          if (Array.isArray(json)) {
+            $.each(json, function (index, item) {
+              console.log("Adding: ", item);
+              console.log("to:", viewModel.availableSymbols());
+              console.log(viewModel.availableSymbols().length);
+              viewModel.availableSymbols.push(
+                new Symbol(item.name, item.symbol)
+              );
+            });
+          } else {
+            //viewModel.availableSymbols.removeAll();
+            viewModel.availableSymbols.push(json.name, json.symbol);
+          }
+        });
+      },
+    };
+    ko.applyBindings(viewModel);
+    //Load initial symbols
+
+    $(document).on("input", "input.select2-search__field", function () {
+      var dInput = this.value;
+      if (dInput.length > 1) {
+        viewModel.fetchSymbols(dInput);
+        console.log(viewModel.availableSymbols());
+      }
+    });
+  });
+</script>

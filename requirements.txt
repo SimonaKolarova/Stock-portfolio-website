@@ -1,0 +1,13 @@
+cs50
+Flask
+Flask-Session
+flask-paginate
+requests
+gunicorn
+Click
+Werkzeug
+MarkupSafe
+Jinja2
+itsdangerous
+redis
+psycopg2-binary

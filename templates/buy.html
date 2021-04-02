@@ -1,0 +1,26 @@
+{% extends "layout.html" %} {% block title %} Buy {% endblock %} {% block
+scripts %} {% include "search_script.html" %} {% endblock%} {% block main %}
+<h2 style="margin: 25px">Buy stocks</h2>
+To choose a
+<a href="http://eoddata.com/symbols.aspx" target="”_blank”"
+  >New York Stock Exchange (NYSE) stock</a
+>
+<br />
+to purchase type the stock name or symbol into the field below and select it
+from the dropdown menu.
+<h2></h2>
+<form action="/buy" method="post">
+  {% include "symbol_form_selector.html" %}
+  <div class="form-group">
+    <input
+      autocomplete="off"
+      autofocus
+      class="form-control"
+      name="shares"
+      placeholder="Number of Shares"
+      type="text"
+    />
+  </div>
+  <button class="btn btn-primary" type="submit">Buy</button>
+</form>
+{% endblock %}
