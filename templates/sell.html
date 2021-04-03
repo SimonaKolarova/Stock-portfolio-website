@@ -1,5 +1,6 @@
-{% extends "layout.html" %} {% block title %} Sell {% endblock %} {% block
-scripts %}
+{% extends "layout.html" %} 
+{% block title %} Sell {% endblock %} 
+{% block scripts %}
 <script>
   $(document).ready(function () {
     $(".select2").select2({
@@ -75,11 +76,13 @@ scripts %}
     ko.applyBindings(model);
   });
 </script>
-{% endblock %} {% block main %}
-<h2 style="margin: 25px">Sell stocks</h2>
-Select stock from the dropdown field below:
+{% endblock %} 
 
-<h2></h2>
+{% block main %}
+<h1>Sell stocks</h1>
+<p class="instructions">
+  Select stock from the dropdown field below.
+</p>
 <form action="/sell" method="post">
   <div class="form-group">
     <select

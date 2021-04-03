@@ -52,3 +52,20 @@ footer {
     width: 100%;
     text-align: center;
 }
+
+.instructions {
+    font-size: 1.2 rem;
+    margin: 1.5rem
+}
+
+h1 {
+    margin: 2rem;
+}
+
+.link {
+    color: #777
+}
+
+.link:hover {
+    text-decoration: none;
+}
