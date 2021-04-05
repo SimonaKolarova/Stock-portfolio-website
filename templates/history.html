@@ -1,21 +1,21 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Stock portfolio
+    Transactions history
 {% endblock %}
 
 {% block main %}
-    <h1>Transactions history</h1>
+    <h1>TRANSACTIONS HISTORY</h1>
     <table class= "table table-striped">
         <thead>
-        <tr>
-            <th>Action</th>
-            <th>Stock name</th>
-            <th>Stock Symbol</th>
-            <th>Number of shares</th>
-            <th>Stock Price</th>
-            <th>Timestamp</th>
-        </tr>
+            <tr>
+                <th>ACTION</th>
+                <th>STOCK NAME</th>
+                <th>STOCK SYMBOL</th>
+                <th>NUMBER OF SHARES</th>
+                <th>STOCK PRICE</th>
+                <th>TIMESTAMP</th>
+            </tr>
         </thead>
         <tbody>
             {% for row in transactions %}

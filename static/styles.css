@@ -1,25 +1,12 @@
-nav .navbar-brand
-{
-    /* size for brand */
-    font-size: xx-large;
+/*Main*/
+html { 
+    min-height: 100%; 
+    position: relative; 
+    scroll-behavior: smooth;
 }
 
-/* colors for brand */
-nav .navbar-brand .blue
-{
-    color: #537fbe;
-}
-nav .navbar-brand .red
-{
-    color: #ea433b;
-}
-nav .navbar-brand .yellow
-{
-    color: #f5b82e;
-}
-nav .navbar-brand .green
-{
-    color: #2e944b;
+body {
+    font-family: Montserrat, sans-serif;
 }
 
 main .form-control
@@ -46,26 +33,59 @@ main img
     max-width: 100%;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+/*Headings and text*/
+h1 {
+    color: #365566;
+    margin: 2rem;
+    font-size: 2rem;
 }
 
+p {
+    color: #333
+}
 .instructions {
     font-size: 1.2 rem;
     margin: 1.5rem
 }
 
-h1 {
-    margin: 2rem;
+.responses {
+    padding-top: 1.5rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #365566;
 }
 
+/*Navbar*/
+nav .navbar-brand .blue
+{
+    font-size: xx-large;
+    color: #365566;
+}
+
+/*Links*/
 .link {
-    color: #777
+    color: #5a8daa
 }
 
 .link:hover {
     text-decoration: none;
+    color: #1b455e
+}
+
+/*Buttons*/
+.btn-custom {
+    background-color: #5a8daa
+}
+
+.btn-custom:hover {
+    background-color: #1b455e
+}
+
+
+/*Footer*/
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }

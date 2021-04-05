@@ -1,29 +1,20 @@
 {% extends "layout.html" %} 
 {% block title %} Buy {% endblock %} 
 {% block scripts %} 
-  {% include "search_script.html" %} 
+  <script type= "text/javascript" src="static/search_database_stocks.js"></script>   
 {% endblock%} 
 {% block main %}
-<h1>Buy stocks</h1>
+<h1>BUY STOCKS</h1>
 <p class="instructions">
   Choose a <a class = "link" href="http://eoddata.com/symbols.aspx" target="_blank">New York Stock Exchange (NYSE)</a> stock to purchase.
   <br>
   Type the stock name or symbol into the field below and select it from the dropdown menu.
 </p>
-
-<h2></h2>
 <form action="/buy" method="post">
   {% include "symbol_form_selector.html" %}
   <div class="form-group">
-    <input
-      autocomplete="off"
-      autofocus
-      class="form-control"
-      name="shares"
-      placeholder="Number of Shares"
-      type="text"
-    />
+    <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Number of shares" type="text"/>
   </div>
-  <button class="btn btn-primary" type="submit">Buy</button>
+  <button class="btn btn-primary btn-custom" type="submit">Buy</button>
 </form>
 {% endblock %}

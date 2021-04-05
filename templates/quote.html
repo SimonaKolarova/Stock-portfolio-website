@@ -1,10 +1,10 @@
 {% extends "layout.html" %} 
-{% block title %} Quote {% endblock %} 
+{% block title %} Get quote {% endblock %} 
 {% block scripts %} 
-  {% include "search_script.html" %} 
+  <script type= "text/javascript" src="static/search_database_stocks.js"></script>   
 {% endblock%} 
 {% block main %}
-  <h1>Look up a stock quote</h1>
+  <h1>LOOK UP A STOCK</h1>
   <p class="instructions">Choose a
     <a class = "link" href="http://eoddata.com/symbols.aspx" target="”_blank”">New York Stock Exchange (NYSE) stock</a>
     to get a quote for.
@@ -14,6 +14,5 @@
 
   <form autocomplete="off" action="/quote" method="post">
     {% include "symbol_form_selector.html" %}
-    <button class="btn btn-primary" type="submit">Quote</button>
   </form>
 {% endblock %}

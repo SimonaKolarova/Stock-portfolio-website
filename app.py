@@ -1,9 +1,9 @@
 import os
 
-from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
+from cs50 import SQL
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -13,6 +13,7 @@ import redis
 # Configure application
 app = Flask(__name__)
 app.testing = True
+
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -23,7 +24,6 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-
 
 # Custom filter
 app.jinja_env.filters["usd"] = usd
@@ -52,20 +52,10 @@ else:
 
 Session(app)
 
-
-
-
-print('running')
-# set API key
-
+# API Key for IEX
 os.environ.setdefault('API_KEY', 'pk_1c8bf68d588841d28f87a357709737bb')
-# Make sure API key is set
-# if not os.environ.get("API_KEY"):
-#    raise RuntimeError("API_KEY not set")
 
 # Show portfolio of stocks
-
-
 @app.route("/")
 @login_required
 def index():
@@ -98,9 +88,8 @@ def index():
         user_value = monetary(user_cash + sum_shares)
     return render_template("index.html", shares_data=shares_dict, user_cash=user_cash, user_value=user_value)
 
+
 # Buy shares of stock
-
-
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
@@ -165,9 +154,8 @@ def buy():
                    balance=(user_cash - cost), id=session["user_id"])
         return redirect("/")
 
+
 # Show history of transactions
-
-
 @app.route("/history")
 @login_required
 def history():
@@ -175,9 +163,8 @@ def history():
                               user_id=session["user_id"])
     return render_template("history.html", transactions=transactions)
 
+
 # Log user in
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -213,9 +200,8 @@ def login():
     else:
         return render_template("login.html")
 
+
 # Log user out
-
-
 @app.route("/logout")
 def logout():
     # Forget any user_id
@@ -224,28 +210,13 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 # Get stock quote
-@app.route("/quote", methods=["GET", "POST"])
+@app.route("/quote", methods=["GET"])
 @login_required
 def quote():
-    if request.method == "GET":
-        return render_template("quote.html")
-    else:
-        print(request.form)
-        # Error - no stock symbol provided
-        if not request.form.get("symbol"):
-            return apology("Please provide a stock symbol.")
-
-        # Error - invalid stock symbol
-        if not lookup(request.form.get("symbol")):
-            return apology("Stock symbol not valid.")
-
-        # Lookup stock
-        return render_template("quoted.html",
-                               name=lookup(request.form.get("symbol"))['name'],
-                               symbol=lookup(request.form.get("symbol"))[
-                                   'symbol'],
-                               price=lookup(request.form.get("symbol"))['price'])
+    return render_template("quote.html")
+ 
 
 # Rest method to get symbols
 @app.route("/symbols/<symbol>", methods=["GET"])
@@ -259,6 +230,25 @@ def symbols(symbol):
     else:
         #get all - paginated
         return jsonify(search())
+
+
+# Rest method to get symbol quote
+@app.route("/quote/<symbol>", methods=["POST"])
+@login_required
+def quote_rest(symbol):
+    try: symbol
+    except NameError: x = None
+    
+    # Error - no stock symbol provided
+    if not symbol:
+        return apology("Please provide a stock symbol.")
+
+    # Error - invalid stock symbol
+    if not lookup(symbol):
+        return apology("Stock symbol not valid.")
+        
+    return jsonify(lookup(symbol))
+
 
 # Rest method to get available stock
 @app.route("/user/shares", methods=["GET"])
@@ -304,9 +294,8 @@ def register():
                    hash=generate_password_hash(request.form.get("password")))
         return redirect("/")
 
+
 # Sell shares
-
-
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
@@ -370,9 +359,8 @@ def sell():
                    balance=user_cash+cost, id=session["user_id"])
         return redirect("/")
 
+
 # Error handler
-
-
 def errorhandler(e):
     if not isinstance(e, HTTPException):
         e = InternalServerError()

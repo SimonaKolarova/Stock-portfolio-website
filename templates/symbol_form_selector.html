@@ -1,25 +1,29 @@
+<!-- Stocks searchable dropdown -->
 <div class="form-group">
-  <select
-    id="symbol"
-    name="symbol"
-    class="form-control select2"
-    style="width: 30%"
+  <select id="symbol" name="symbol" class="form-control select2" style="width: 30%"
     data-bind="options: availableSymbols,
                      optionsText: 'name',
                      optionsValue: 'symbol',
                      value: selectedSymbol,
                      optionsCaption: 'Stock Symbol'"
-    searchable="Search here.."
-  ></select>
-  <div data-bind="visible: selectedSymbol">
-    <!-- Appears when you select something -->
-    <br />
-    <b
-      >You have chosen
-      <span
-        data-bind="text: selectedSymbol() ? selectedSymbol() : 'unknown'"
-      ></span>
-      stocks.
-    </b>
+    searchable="Search here.."></select>
+
+  <!-- Display quote result -->
+  <div data-bind="visible: quote">
+    <p class = "responses">    
+      A share of 
+      <span data-bind="text: quote() ? quote().name : 'unknown'"></span> 
+      (<span data-bind="text: quote() ? quote().symbol : 'unknown'"></span>)
+      is currently priced at $
+      <span data-bind="text: quote() ? quote().price : 'unknown'"></span>.
+    </p>
   </div>
+  
+  <!-- Display error -->
+  <div data-bind="visible: error">
+    <p class = "responses">    
+      <span data-bind="text: error() ? error() : 'unknown'"></span>.
+    </p>
+  </div>
+
 </div>

@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block main %}
-    <h1>My portfolio<br></h1>
+    <h1>MY STOCKS PORTFOLIO<br></h1>
     <table class= "table table-striped">
         <thead>
         <tr>
-            <th>Stock name</th>
-            <th>Stock Symbol</th>
-            <th>Number of shares</th>
-            <th>Stock Price</th>
-            <th>Value</th>
+            <th>STOCK NAME</th>
+            <th>STOCK SYMBOL</th>
+            <th>NUMBER OF SHARES</th>
+            <th>STOCK PRICE</th>
+            <th>VALUE</th>
         </tr>
         </thead>
         <tbody>
@@ -27,13 +27,13 @@
                 </tr>
             {% endfor %}
                 <tr>
-                    <td>Cash</td>
+                    <td>CASH</td>
                     <td colspan="3"></td>
                     <td>${{user_cash}}</td>
                 </tr>
         </tbody>
         <tfoot>
-            <td><b>Total value</b></td>
+            <td><b>TOTAL VALUE</b></td>
             <td colspan="3"></td>
             <td><b>${{user_value}}</b></td>
         </tfoot>
